@@ -592,7 +592,7 @@ treemode.validate = function () {
         .map(error => improveSchemaError(error))
         .map(function findNode (error) {
           return {
-            node: root.findNode(error.dataPath),
+            node: root.findNode(error.instancePath),
             error,
             type: 'validation'
           }

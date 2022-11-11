@@ -353,18 +353,21 @@ JSONEditor.prototype.setSchema = function (schema, schemaRefs) {
       if (this.options.ajv) {
         ajv = this.options.ajv
       } else {
-        ajv = Ajv({
+        console.log("Trying to create Ajv")
+
+        ajv = new Ajv({
           allErrors: true,
           verbose: true,
           schemaId: 'auto',
           $data: true
         })
-
+        console.log("Adding schemas")
         // support both draft-04 and draft-06 alongside the latest draft-07
-        ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'))
-        ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-06.json'))
+        // ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'))
+        // ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-06.json'))
       }
     } catch (err) {
+      console.log(err)
       console.warn('Failed to create an instance of Ajv, JSON Schema validation is not available. Please use a JSONEditor bundle including Ajv, or pass an instance of Ajv as via the configuration option `ajv`.')
     }
 

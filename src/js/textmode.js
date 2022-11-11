@@ -874,9 +874,10 @@ textmode.validate = function () {
   let json
   try {
     json = this.get() // this can fail when there is no valid json
-
+    console.log("Hi")
     // execute JSON schema validation (ajv)
     if (this.validateSchema) {
+      console.log("HELLO")
       const valid = this.validateSchema(json)
       if (!valid) {
         schemaErrors = this.validateSchema.errors.map(error => {
